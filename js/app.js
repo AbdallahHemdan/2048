@@ -281,6 +281,82 @@ function movement(direction) {
   }
 }
 
+function canMove (direction) {
+  let checkMovement = false;
+
+  if (direction === directionEnum.Up) {
+    for (let row = 1; row <= 3; row++) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row - 1; k >= 0; k--) {
+            if (board[k][col] !== 0) break;
+            newPos = k;
+          }
+
+          if (newPos !== row)
+            checkMovement = true;
+        }
+      }
+    }
+  } else if (direction === directionEnum.Down) {
+    for (let row = 2; row >= 0; row--) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row + 1; k <= 3; k++) {
+            if (board[k][col] !== 0) break;
+            newPos = k;
+          }
+
+          if (newPos !== row)
+            checkMovement = true;
+        }
+      }
+    }
+  } else if (direction === directionEnum.Left) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 1; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col - 1; k >= 0; k--) {
+            if (board[row][k] !== 0) break;
+            newPos = k;
+          }
+
+          if (newPos !== col)
+            checkMovement = true;
+        }
+      }
+    }
+  } else if (direction === directionEnum.Right) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 2; col >= 0; col--) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col + 1; k <= 3; k++) {
+            if (board[row][k] !== 0) break;
+            newPos = k;
+          }
+
+          if (newPos !== col)
+            checkMovement = true; 
+        }
+      }
+    }
+  }
+
+  return checkMovement;
+}
+
 function showNumberWithAnimation(row, col, randNumber) {
   let numberCell = $("#number-cell-" + row + "-" + col);
   numberCell.css("top", getPosTop(row, col));
