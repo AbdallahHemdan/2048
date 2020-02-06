@@ -140,8 +140,18 @@ function getNumberCellColor(number) {
 }
 
 function movement(direction) {
+  // check the overlapped cells in the current move not to overlapped twice
+  let overlappedBoard = new Array();
+
+  for (let i = 0; i <= 3; i++) {
+    overlappedBoard[i] = new Array();
+    for (let j = 0; j <= 3; j++) {
+      overlappedBoard[i][j] = 0;
+    }
+  }
+
   if (directions == directions.Up) {
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 1; i <= 3; i++) {
       for (let j = 0; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
           
@@ -151,14 +161,23 @@ function movement(direction) {
             newPos = k;
           }
 
-          board[newPos][j] = board[i][j]; 
-          board[i][j] = 0;
+          // overlapping handling
+          if (newPos !== 0 && board[newPos - 1][j] === board[i][j] && overlappedBoard[newPos - 1][j] === 0) {
+            board[newPos - 1][j] *= 2;
+            overlappedBoard[newPos - 1][j] = 1;
+            board[i][j] = 0;
+          }
+          else if (newPos != i) { // else just move the cell if possible
+            board[newPos][j] = board[i][j]; 
+            board[i][j] = 0;
+          }
+
         }
       }
     }
   }
   else if (directions == directions.Down) {
-    for (let i = 3; i >= 0; i--) {
+    for (let i = 2; i >= 0; i--) {
       for (let j = 0; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
           
@@ -168,15 +187,23 @@ function movement(direction) {
             newPos = k;
           }
 
-          board[newPos][j] = board[i][j]; 
-          board[i][j] = 0;
+          // overlapping handling
+          if (newPos !== 3 && board[newPos + 1][j] === board[i][j] && overlappedBoard[newPos + 1][j] === 0) {
+            board[newPos + 1][j] *= 2;
+            overlappedBoard[newPos + 1][j] = 1;
+            board[i][j] = 0;
+          }
+          else if (newPos != i) { // else just move the cell if possible
+            board[newPos][j] = board[i][j]; 
+            board[i][j] = 0;
+          }
         }
       }
     }
   }
   else if (directions == directions.Left) {
     for (let i = 0; i <= 3; i++) {
-      for (let j = 0; j <= 3; j++) {
+      for (let j = 1; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
           
           let newPos = j; // as far as possible empty position
@@ -185,15 +212,23 @@ function movement(direction) {
             newPos = k;
           }
 
-          board[i][newPos] = board[i][j]; 
-          board[i][j] = 0;
+          // overlapping handling
+          if (newPos !== 0 && board[i][newPos - 1] === board[i][j] && overlappedBoard[i][newPos - 1] === 0) {
+            board[i][newPos - 1] *= 2;
+            overlappedBoard[i][newPos - 1] = 1;
+            board[i][j] = 0;
+          }
+          else if (newPos != i) { // else just move the cell if possible
+            board[i][newPos] = board[i][j]; 
+            board[i][j] = 0;
+          }
         }
       }
     }
   }
   else if (directions == directions.Right) {
     for (let i = 0; i <= 3; i++) {
-      for (let j = 3; j >= 0; j--) {
+      for (let j = 2; j >= 0; j--) {
         if (board[i][j] !== 0) { //if the cell isn't empty
           
           let newPos = j; // as far as possible empty position
@@ -202,8 +237,16 @@ function movement(direction) {
             newPos = k;
           }
 
-          board[i][newPos] = board[i][j]; 
-          board[i][j] = 0;
+          // overlapping handling
+          if (newPos !== 3 && board[i][newPos + 1] === board[i][j] && overlappedBoard[i][newPos + 1] === 0) {
+            board[i][newPos + 1] *= 2;
+            overlappedBoard[i][newPos + 1] = 1;
+            board[i][j] = 0;
+          }
+          else if (newPos != i) { // else just move the cell if possible
+            board[newPos][j] = board[i][j]; 
+            board[i][j] = 0;
+          }
         }
       }
     }
