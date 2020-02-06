@@ -73,3 +73,32 @@ function getPosTop(i, j) {
 function getPosLeft(i, j) {
   return 20 + 120 * j;
 }
+
+function generateOneNumber() {
+  let randBoard = [];
+  let randNumber = 0;
+  for (let row = 0; row <= 3; row++) {
+    for (let col = 0; col <= 4; col++) {
+      if (board[row][col] === 0) {
+        randBoard[randNumber++] = [row][col];
+      }
+    }
+  }
+
+  if (randBoard === 0) {
+    // no empty cell exists
+    return false;
+  } else {
+    let randRandomCell = Math.random() * randBoard.length;
+    randRandomCell = Math.floor(randRandomCell);
+    console.log(`randRandomCell = ${randRandomCell}`);
+
+    let randX = randBoard[randRandomCell][0];
+    let randY = randBoard[randRandomCell][1];
+    console.log(`randX = ${randX}`);
+    console.log(`randY = ${randY}`);
+    board[randX][randY] = Math.random() <= 0.7 ? 2 : 4;
+    console.log(`boardRandomCell = ${board[randX][randY]}`);
+    showNumberWithAnimation(randX, randY, board[randX][randY]);
+  }
+}
