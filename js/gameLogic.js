@@ -18,8 +18,8 @@ $(document).keydown(function(action) {
         break;
     }
     // check Winning-GameOver statues
-    // checkWinning();
-    // checkGameOver();
+    //console.log("Winning State", checkWinning());
+    //console.log("Gameover State", checkGameOver());
   }
 });
 
