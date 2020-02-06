@@ -78,7 +78,7 @@ function generateOneNumber() {
   let randBoard = [];
   let randNumber = 0;
   for (let row = 0; row <= 3; row++) {
-    for (let col = 0; col <= 4; col++) {
+    for (let col = 0; col <= 3; col++) {
       if (board[row][col] === 0) {
         randBoard[randNumber++] = [row][col];
       }
