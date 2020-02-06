@@ -28,13 +28,13 @@ function initGrid() {
   gameScore.innerHTML = "0";
   console.log(gameScore.innerHTML);
 
-  for (let i = 0; i <= 3; i++) {
-    board[i] = new Array();
-    for (let j = 0; j <= 3; j++) {
-      board[i][j] = 0;
-      let gridCell = document.querySelector(`#grid-cell-${i}-${j}`);
-      gridCell.style.top = `${getPosTop(i, j)}px`;
-      gridCell.style.left = `${getPosLeft(i, j)}px`;
+  for (let row = 0; row <= 3; row++) {
+    board[row] = new Array();
+    for (let col = 0; col <= 3; col++) {
+      board[row][col] = 0;
+      let gridCell = document.querySelector(`#grid-cell-${row}-${col}`);
+      gridCell.style.top = `${getPosTop(row, col)}px`;
+      gridCell.style.left = `${getPosLeft(row, col)}px`;
     }
   }
   updateBoardView();
@@ -42,36 +42,36 @@ function initGrid() {
 
 function updateBoardView() {
   $(".number-cell").remove();
-  for (let i = 0; i <= 3; i++) {
-    trueBoard[i] = new Array();
-    for (let j = 0; j <= 3; j++) {
-      trueBoard[i][j] = false;
+  for (let row = 0; row <= 3; row++) {
+    trueBoard[row] = new Array();
+    for (let col = 0; col <= 3; col++) {
+      trueBoard[row][col] = false;
       let numberCell = document.createElement("div");
       let grid = document.querySelector("#grid-container");
       numberCell.className = "number-cell";
-      numberCell.id = `number-cell-${i}-${j}`;
+      numberCell.id = `number-cell-${row}-${col}`;
       grid.appendChild(numberCell);
 
-      if (board[i][j] !== 0) {
-        let numberCell = document.querySelector(`#number-cell-${i}-${j}`);
-        numberCell.style.top = `${getPosTop(i, j)}px`;
-        numberCell.style.left = `${getPosLeft(i, j)}px`;
+      if (board[row][col] !== 0) {
+        let numberCell = document.querySelector(`#number-cell-${row}-${col}`);
+        numberCell.style.top = `${getPosTop(row, col)}px`;
+        numberCell.style.left = `${getPosLeft(row, col)}px`;
         numberCell.style.backgroundColor = `${getNumberCellBgColor(
-          board[i][j]
+          board[row][col]
         )}`;
-        numberCell.style.color = `${getNumberCellColor(board[i][j])}`;
-        numberCell.innerText = board[i][j];
+        numberCell.style.color = `${getNumberCellColor(board[row][col])}`;
+        numberCell.innerText = board[row][col];
       }
     }
   }
 }
 
-function getPosTop(i, j) {
-  return 20 + 120 * i;
+function getPosTop(row, col) {
+  return 20 + 120 * row;
 }
 
-function getPosLeft(i, j) {
-  return 20 + 120 * j;
+function getPosLeft(row, col) {
+  return 20 + 120 * col;
 }
 
 function generateOneNumber() {
@@ -85,7 +85,7 @@ function generateOneNumber() {
     }
   }
 
-  if (randBoard === 0) {
+  if (randBoard.length === 0) {
     // no empty cell exists
     return false;
   } else {
