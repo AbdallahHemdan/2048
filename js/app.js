@@ -7,7 +7,7 @@ const directions = {
   Down: 2,
   Left: 3,
   Right: 4
-}
+};
 
 function newGame() {
   createGrid();
@@ -87,7 +87,7 @@ function generateOneNumber() {
   for (let row = 0; row <= 3; row++) {
     for (let col = 0; col <= 3; col++) {
       if (board[row][col] === 0) {
-        randBoard[randNumber++] = [row][col];
+        randBoard[randNumber++] = [row, col];
       }
     }
   }
@@ -111,101 +111,123 @@ function generateOneNumber() {
 }
 
 function getNumberCellBgColor(number) {
-  switch(number) {
-    case 2:    return "#BBADA0";
-    case 4:    return "#ece0c6";
-    case 8:    return "#f2b079";
-    case 16:   return "#f49664";
-    case 32:   return "#f57c61";
-    case 64:   return "#f65f3c";
-    case 128:  return "#eecf73";
-    case 256:  return "#ebcd5f";
-    case 512:  return "#ebc84e";
-    case 1024: return "#EEC22D";
-    case 2048: return "#EAC32F";
-    
+  switch (number) {
+    case 2:
+      return "#eee4da";
+    case 4:
+      return "#ece0c6";
+    case 8:
+      return "#f2b079";
+    case 16:
+      return "#f49664";
+    case 32:
+      return "#f57c61";
+    case 64:
+      return "#f65f3c";
+    case 128:
+      return "#eecf73";
+    case 256:
+      return "#ebcd5f";
+    case 512:
+      return "#ebc84e";
+    case 1024:
+      return "#EEC22D";
+    case 2048:
+      return "#EAC32F";
+
     //Empty cell
-    case 0:    return "#CDC1B4";
+    case 0:
+      return "#CDC1B4";
 
     default:
-      throw ("Number is NotFound 404");
+      throw "Number is NotFound 404";
   }
 }
 
 function getNumberCellColor(number) {
   if (number == 2 || number == 4) {
-    return "#7E7360";
+    return "#776e65";
   }
   return "#FFFFD5";
 }
 
 function movement(direction) {
   if (directions == directions.Up) {
-    for (let i = 0; i <= 3; i++) {
-      for (let j = 0; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = i; // as far as possible empty position
-          for (let k = i - 1; k >= 0; k--) {
-            if (board[k][j] !== 0) break;
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row - 1; k >= 0; k--) {
+            if (board[k][col] !== 0) break;
             newPos = k;
           }
 
-          board[newPos][j] = board[i][j]; 
-          board[i][j] = 0;
+          board[newPos][col] = board[row][col];
+          board[row][col] = 0;
+        }
+      }
+    }
+  } else if (directions == directions.Down) {
+    for (let row = 3; row >= 0; row--) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row + 1; k <= 3; k++) {
+            if (board[k][col] !== 0) break;
+            newPos = k;
+          }
+
+          board[newPos][col] = board[row][col];
+          board[row][col] = 0;
+        }
+      }
+    }
+  } else if (directions == directions.Left) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col - 1; k >= 0; k--) {
+            if (board[row][k] !== 0) break;
+            newPos = k;
+          }
+
+          board[row][newPos] = board[row][col];
+          board[row][col] = 0;
+        }
+      }
+    }
+  } else if (directions == directions.Right) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 3; col >= 0; col--) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col + 1; k <= 3; k++) {
+            if (board[row][k] !== 0) break;
+            newPos = k;
+          }
+
+          board[row][newPos] = board[row][col];
+          board[row][col] = 0;
         }
       }
     }
   }
-  else if (directions == directions.Down) {
-    for (let i = 3; i >= 0; i--) {
-      for (let j = 0; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = i; // as far as possible empty position
-          for (let k = i + 1; k <= 3; k++) {
-            if (board[k][j] !== 0) break;
-            newPos = k;
-          }
+}
 
-          board[newPos][j] = board[i][j]; 
-          board[i][j] = 0;
-        }
-      }
-    }
-  }
-  else if (directions == directions.Left) {
-    for (let i = 0; i <= 3; i++) {
-      for (let j = 0; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = j; // as far as possible empty position
-          for (let k = j - 1; k >= 0; k--) {
-            if (board[i][k] !== 0) break;
-            newPos = k;
-          }
-
-          board[i][newPos] = board[i][j]; 
-          board[i][j] = 0;
-        }
-      }
-    }
-  }
-  else if (directions == directions.Right) {
-    for (let i = 0; i <= 3; i++) {
-      for (let j = 3; j >= 0; j--) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = j; // as far as possible empty position
-          for (let k = j + 1; k <= 3; k++) {
-            if (board[i][k] !== 0) break;
-            newPos = k;
-          }
-
-          board[i][newPos] = board[i][j]; 
-          board[i][j] = 0;
-        }
-      }
-    }
-  }
+function showNumberWithAnimation(row, col, randNumber) {
+  let numberCell = $("#number-cell-" + row + "-" + col);
+  numberCell.css("top", getPosTop(row, col));
+  numberCell.css("left", getPosLeft(row, col));
+  numberCell.css("background-color", getNumberCellBgColor(board[row][col]));
+  numberCell.css("color", getNumberCellColor(board[row][col]));
+  numberCell.text(randNumber);
 }
