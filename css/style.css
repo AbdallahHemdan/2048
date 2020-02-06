@@ -81,7 +81,7 @@ header {
   border: #8f7a66;
 }
 
-#score {
+.score {
   position: relative;
   display: inline-block;
   background: #bbada0;
@@ -97,7 +97,7 @@ header {
   min-width: 100px;
 }
 
-#score:after {
+.score:after {
   content: "Score";
   position: absolute;
   width: 100%;
