@@ -1,6 +1,7 @@
 let score = 0;
 let board = new Array();
 let trueBoard = new Array();
+let gameEnd = false;
 
 const directionEnum = {
   Up: 1,
@@ -15,6 +16,31 @@ function newGame() {
   generateOneNumber();
   generateOneNumber();
 }
+
+// EventListener on Keys
+$(document).keydown(function(action) {
+  if (gameEnd === 0) {
+    switch (action.keyCode) {
+      case 37: //left
+        if (moveLeft()) setTimeout("generateOneNumber()", 300);
+        break;
+      case 38: //up
+        if (moveUp()) setTimeout("generateOneNumber()", 300);
+        break;
+      case 39: //right
+        if (moveRight()) setTimeout("generateOneNumber()", 300);
+        break;
+      case 40: //down
+        if (moveDown()) setTimeout("generateOneNumber()", 300);
+        break;
+      default:
+        break;
+    }
+    // TODO
+    checkWinning();
+    checkGameOver();
+  }
+});
 
 function createGrid() {
   let grid = document.querySelector(".grid-container");
