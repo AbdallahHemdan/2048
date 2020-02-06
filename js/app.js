@@ -71,8 +71,8 @@ function updateBoardView() {
         }
         numberCell.style.color = `${getNumberCellColor(board[row][col])}`;
         numberCell.innerText = board[row][col];
-        
-        let digits = getDigitsnNumber(board[row][col]);
+
+        let digits = getDigitsNumber(board[row][col]);
         if (digits >= 3) {
           let fontSize = String(80 - digits * 10);
           numberCell.style.fontSize = `${fontSize}` + "px";
@@ -82,9 +82,9 @@ function updateBoardView() {
   }
 }
 
-function getDigitsnNumber (number) {
+function getDigitsNumber(number) {
   let digits = 0;
-  while(number >= 1) {
+  while (number >= 1) {
     digits++;
     number /= 10;
   }
