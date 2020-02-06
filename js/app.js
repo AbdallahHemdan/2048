@@ -2,7 +2,7 @@ let score = 0;
 let board = new Array();
 let trueBoard = new Array();
 
-const directions = {
+const directionEnum = {
   Up: 1,
   Down: 2,
   Left: 3,
@@ -155,109 +155,125 @@ function movement(direction) {
   // check the overlapped cells in the current move not to overlapped twice
   let overlappedBoard = new Array();
 
-  for (let i = 0; i <= 3; i++) {
-    overlappedBoard[i] = new Array();
-    for (let j = 0; j <= 3; j++) {
-      overlappedBoard[i][j] = 0;
+  for (let row = 0; row <= 3; row++) {
+    overlappedBoard[row] = new Array();
+    for (let col = 0; col <= 3; col++) {
+      overlappedBoard[row][col] = 0;
     }
   }
 
-  if (directions === directions.Up) {
-    for (let i = 1; i <= 3; i++) {
-      for (let j = 0; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = i; // as far as possible empty position
-          for (let k = i - 1; k >= 0; k--) {
-            if (board[k][j] !== 0) break;
+  if (direction === directionEnum.Up) {
+    for (let row = 1; row <= 3; row++) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row - 1; k >= 0; k--) {
+            if (board[k][col] !== 0) break;
             newPos = k;
           }
 
           // overlapping handling
-          if (newPos !== 0 && board[newPos - 1][j] === board[i][j] && overlappedBoard[newPos - 1][j] === 0) {
-            board[newPos - 1][j] *= 2;
-            overlappedBoard[newPos - 1][j] = 1;
-            board[i][j] = 0;
-          }
-          else if (newPos !== i) { // else just move the cell if possible
-            board[newPos][j] = board[i][j]; 
-            board[i][j] = 0;
-          }
-
-        }
-      }
-    }
-  }
-  else if (directions === directions.Down) {
-    for (let i = 2; i >= 0; i--) {
-      for (let j = 0; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = i; // as far as possible empty position
-          for (let k = i + 1; k <= 3; k++) {
-            if (board[k][j] !== 0) break;
-            newPos = k;
-          }
-
-          // overlapping handling
-          if (newPos !== 3 && board[newPos + 1][j] === board[i][j] && overlappedBoard[newPos + 1][j] === 0) {
-            board[newPos + 1][j] *= 2;
-            overlappedBoard[newPos + 1][j] = 1;
-            board[i][j] = 0;
-          }
-          else if (newPos !== i) { // else just move the cell if possible
-            board[newPos][j] = board[i][j]; 
-            board[i][j] = 0;
+          if (
+            newPos !== 0 &&
+            board[newPos - 1][col] === board[row][col] &&
+            overlappedBoard[newPos - 1][col] === 0
+          ) {
+            board[newPos - 1][col] *= 2;
+            overlappedBoard[newPos - 1][col] = 1;
+            board[row][col] = 0;
+          } else if (newPos !== row) {
+            // else just move the cell if possible
+            board[newPos][col] = board[row][col];
+            board[row][col] = 0;
           }
         }
       }
     }
-  }
-  else if (directions === directions.Left) {
-    for (let i = 0; i <= 3; i++) {
-      for (let j = 1; j <= 3; j++) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = j; // as far as possible empty position
-          for (let k = j - 1; k >= 0; k--) {
-            if (board[i][k] !== 0) break;
+  } else if (direction === directionEnum.Down) {
+    for (let row = 2; row >= 0; row--) {
+      for (let col = 0; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = row; // as far as possible empty position
+          for (let k = row + 1; k <= 3; k++) {
+            if (board[k][col] !== 0) break;
             newPos = k;
           }
 
           // overlapping handling
-          if (newPos !== 0 && board[i][newPos - 1] === board[i][j] && overlappedBoard[i][newPos - 1] === 0) {
-            board[i][newPos - 1] *= 2;
-            overlappedBoard[i][newPos - 1] = 1;
-            board[i][j] = 0;
-          }
-          else if (newPos !== i) { // else just move the cell if possible
-            board[i][newPos] = board[i][j]; 
-            board[i][j] = 0;
+          if (
+            newPos !== 3 &&
+            board[newPos + 1][col] === board[row][col] &&
+            overlappedBoard[newPos + 1][col] === 0
+          ) {
+            board[newPos + 1][col] *= 2;
+            overlappedBoard[newPos + 1][col] = 1;
+            board[row][col] = 0;
+          } else if (newPos !== row) {
+            // else just move the cell if possible
+            board[newPos][col] = board[row][col];
+            board[row][col] = 0;
           }
         }
       }
     }
-  }
-  else if (directions === directions.Right) {
-    for (let i = 0; i <= 3; i++) {
-      for (let j = 2; j >= 0; j--) {
-        if (board[i][j] !== 0) { //if the cell isn't empty
-          
-          let newPos = j; // as far as possible empty position
-          for (let k = j + 1; k <= 3; k++) {
-            if (board[i][k] !== 0) break;
+  } else if (direction === directionEnum.Left) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 1; col <= 3; col++) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col - 1; k >= 0; k--) {
+            if (board[row][k] !== 0) break;
             newPos = k;
           }
 
           // overlapping handling
-          if (newPos !== 3 && board[i][newPos + 1] === board[i][j] && overlappedBoard[i][newPos + 1] === 0) {
-            board[i][newPos + 1] *= 2;
-            overlappedBoard[i][newPos + 1] = 1;
-            board[i][j] = 0;
+          if (
+            newPos !== 0 &&
+            board[row][newPos - 1] === board[row][col] &&
+            overlappedBoard[row][newPos - 1] === 0
+          ) {
+            board[row][newPos - 1] *= 2;
+            overlappedBoard[row][newPos - 1] = 1;
+            board[row][col] = 0;
+          } else if (newPos !== row) {
+            // else just move the cell if possible
+            board[row][newPos] = board[row][col];
+            board[row][col] = 0;
           }
-          else if (newPos !== i) { // else just move the cell if possible
-            board[newPos][j] = board[i][j]; 
-            board[i][j] = 0;
+        }
+      }
+    }
+  } else if (direction === directionEnum.Right) {
+    for (let row = 0; row <= 3; row++) {
+      for (let col = 2; col >= 0; col--) {
+        if (board[row][col] !== 0) {
+          //if the cell isn't empty
+
+          let newPos = col; // as far as possible empty position
+          for (let k = col + 1; k <= 3; k++) {
+            if (board[row][k] !== 0) break;
+            newPos = k;
+          }
+
+          // overlapping handling
+          if (
+            newPos !== 3 &&
+            board[row][newPos + 1] === board[row][col] &&
+            overlappedBoard[row][newPos + 1] === 0
+          ) {
+            board[row][newPos + 1] *= 2;
+            overlappedBoard[row][newPos + 1] = 1;
+            board[row][col] = 0;
+          } else if (newPos !== row) {
+            // else just move the cell if possible
+            board[newPos][col] = board[row][col];
+            board[row][col] = 0;
           }
         }
       }
@@ -272,4 +288,22 @@ function showNumberWithAnimation(row, col, randNumber) {
   numberCell.css("background-color", getNumberCellBgColor(board[row][col]));
   numberCell.css("color", getNumberCellColor(board[row][col]));
   numberCell.text(randNumber);
+  numberCell.animate(
+    {
+      top: getPosTop(row, col),
+      left: getPosLeft(row, col)
+    },
+    50
+  );
+}
+
+function showMoveAnimation(fromX, fromY, toX, toY) {
+  let numberCell = $("#number-cell-" + fromX + "-" + fromY);
+  numberCell.animate(
+    {
+      top: getPosTop(toX, toY),
+      left: getPosLeft(toX, toY)
+    },
+    200
+  );
 }
