@@ -150,7 +150,7 @@ function movement(direction) {
     }
   }
 
-  if (directions == directions.Up) {
+  if (directions === directions.Up) {
     for (let i = 1; i <= 3; i++) {
       for (let j = 0; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
@@ -167,7 +167,7 @@ function movement(direction) {
             overlappedBoard[newPos - 1][j] = 1;
             board[i][j] = 0;
           }
-          else if (newPos != i) { // else just move the cell if possible
+          else if (newPos !== i) { // else just move the cell if possible
             board[newPos][j] = board[i][j]; 
             board[i][j] = 0;
           }
@@ -176,7 +176,7 @@ function movement(direction) {
       }
     }
   }
-  else if (directions == directions.Down) {
+  else if (directions === directions.Down) {
     for (let i = 2; i >= 0; i--) {
       for (let j = 0; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
@@ -193,7 +193,7 @@ function movement(direction) {
             overlappedBoard[newPos + 1][j] = 1;
             board[i][j] = 0;
           }
-          else if (newPos != i) { // else just move the cell if possible
+          else if (newPos !== i) { // else just move the cell if possible
             board[newPos][j] = board[i][j]; 
             board[i][j] = 0;
           }
@@ -201,7 +201,7 @@ function movement(direction) {
       }
     }
   }
-  else if (directions == directions.Left) {
+  else if (directions === directions.Left) {
     for (let i = 0; i <= 3; i++) {
       for (let j = 1; j <= 3; j++) {
         if (board[i][j] !== 0) { //if the cell isn't empty
@@ -218,7 +218,7 @@ function movement(direction) {
             overlappedBoard[i][newPos - 1] = 1;
             board[i][j] = 0;
           }
-          else if (newPos != i) { // else just move the cell if possible
+          else if (newPos !== i) { // else just move the cell if possible
             board[i][newPos] = board[i][j]; 
             board[i][j] = 0;
           }
@@ -226,7 +226,7 @@ function movement(direction) {
       }
     }
   }
-  else if (directions == directions.Right) {
+  else if (directions === directions.Right) {
     for (let i = 0; i <= 3; i++) {
       for (let j = 2; j >= 0; j--) {
         if (board[i][j] !== 0) { //if the cell isn't empty
@@ -243,7 +243,7 @@ function movement(direction) {
             overlappedBoard[i][newPos + 1] = 1;
             board[i][j] = 0;
           }
-          else if (newPos != i) { // else just move the cell if possible
+          else if (newPos !== i) { // else just move the cell if possible
             board[newPos][j] = board[i][j]; 
             board[i][j] = 0;
           }
