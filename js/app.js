@@ -66,6 +66,9 @@ function updateBoardView() {
         numberCell.style.backgroundColor = `${getNumberCellBgColor(
           board[row][col]
         )}`;
+        if (board[row][col] >= 4) {
+          numberCell.style.fontSize = `50px`;
+        }
         numberCell.style.color = `${getNumberCellColor(board[row][col])}`;
         numberCell.innerText = board[row][col];
       }

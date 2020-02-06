@@ -18,8 +18,8 @@ $(document).keydown(function(action) {
         break;
     }
     // check Winning-GameOver statues
-    // checkWinning();
-    // checkGameOver();
+    checkWinning();
+    checkGameOver();
   }
 });
 
@@ -149,4 +149,77 @@ function moveRight() {
   }
   setTimeout("updateBoardView()", 200);
   return true;
+}
+
+function checkWinning() {
+  for (let row = 0; row <= 3; row++) {
+    for (let col = 0; col <= 3; col++) {
+      if (board[row][col] === 2048) {
+        //   if (board[row][col] === 8) { // for testing
+        overLayShow(1);
+        return false;
+      }
+    }
+  }
+}
+function checkGameOver() {
+  // for testing
+  //   for (let row = 0; row <= 3; row++) {
+  //     for (let col = 0; col <= 3; col++) {
+  //       if (board[row][col] === 4) {
+  //         overLayShow(2);
+  //         return false;
+  //       }
+  //     }
+  //   }
+  if (
+    !canMoveUp(board) &&
+    !canMoveLeft(board) &&
+    !canMoveDown(board) &&
+    !canMoveRight(board)
+  ) {
+    overLayShow(2);
+  }
+}
+
+function overLayShow(stateFlag) {
+  if (stateFlag === 1) {
+    startWinningOverLay();
+  } else {
+    startGameOverOverLay();
+  }
+}
+
+// overLay effect..
+function startWinningOverLay() {
+  document.getElementById("overlay-2").style.display = "block";
+}
+function endWinningOverLay() {
+  document.getElementById("overlay-2").style.display = "none";
+}
+function startGameOverOverLay() {
+  document.getElementById("overlay-1").style.display = "block";
+}
+function endGameOverOverLay() {
+  document.getElementById("overlay-1").style.display = "none";
+}
+
+function rePlay(stateFlag) {
+  // 1 ==> Winning
+  // 2 ==> GameOver
+  if (stateFlag === 1) {
+    endWinningOverLay();
+  } else {
+    endGameOverOverLay();
+  }
+  newGame();
+}
+function continueWithOldBoard(stateFlag) {
+  // 1 ==> Winning
+  // 2 ==> GameOver
+  if (stateFlag === 1) {
+    endWinningOverLay();
+  } else {
+    endGameOverOverLay();
+  }
 }
