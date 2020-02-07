@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img  width="300px" src="https://github.com/AbdallahHemdan/HamDola2048Game/blob/master/images/2048_logo.svg.png" alt="2048 logo"></a>
+ <img  width="400px" src="https://github.com/AbdallahHemdan/HamDola2048Game/blob/master/images/logo.png" alt="2048 logo"></a>
 </p>
 
 <h3 align="center">🎮 HamDola 2048</h3>
