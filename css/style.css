@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 body {
   background-color: #faf8ef;
   margin: 0;
@@ -14,7 +15,7 @@ header {
   width: 460px;
   height: 460px;
   padding: 20px;
-  margin: 30px auto;
+  margin: 15px auto;
   border-radius: 10px;
   background-color: #bbada0;
 }
@@ -41,6 +42,18 @@ header {
 .controls {
   margin-top: 20px;
   text-align: center;
+}
+
+.title {
+  position: relative;
+  margin: 25px auto 15px auto;
+  text-align: center;
+  color: #776e65;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: "Luckiest Guy", cursive;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .btn,
@@ -81,84 +94,44 @@ header {
   border: #8f7a66;
 }
 
+.wide {
+  min-width: 250px;
+}
+
 .score {
   position: relative;
   display: inline-block;
   background: #bbada0;
-  padding: 15px 25px;
-  font-size: 25px;
-  height: 25px;
+  padding: 10px 20px 0 20px;
+  font-size: 30px;
+  height: 45px;
   line-height: 47px;
   font-weight: bold;
   border-radius: 3px;
   color: white;
-  margin-top: 18px;
+  margin-bottom: 0px;
   text-align: center;
   min-width: 100px;
+  padding-top: 30px;
 }
 
 .score:after {
   content: "Score";
   position: absolute;
   width: 100%;
-  top: 10px;
+  top: 6px;
   left: 0;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 20px;
   line-height: 13px;
   text-align: center;
   color: #f0ebe7;
-}
-
-.gameover-mask,
-.victory-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.gameover-tip,
-.victory-tip {
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  height: 150px;
-  font-family: Arial;
-  line-height: 50px;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.victory-tip {
-  color: rgba(219, 5, 5, 0.582);
-}
-
-.gameover .overScore,
-.victory .overScore {
-  color: black;
-  font-size: 35px;
-  font-weight: 100;
-}
-
-.gameover .span2,
-.victory .span2 {
-  display: block;
-  background-color: rgba(58, 33, 33, 0.5);
-  color: black;
-  font-size: 16px;
-  font-weight: 100;
+  margin-top: 7px;
 }
 
 #overlay-1,
-#overlay-2 {
+#overlay-2,
+#overlay-3 {
   position: fixed;
   display: none;
   width: 100%;
@@ -174,7 +147,8 @@ header {
 }
 
 #text-1,
-#text-2 {
+#text-2,
+#text-3 {
   font-family: "Indie Flower", cursive;
   position: absolute;
   top: 50%;
@@ -187,9 +161,105 @@ header {
   -ms-transform: translate(-50%, -50%);
 }
 
+#text-3 {
+  font-size: 80px;
+}
 .rePlay {
   position: relative;
   margin: 400px auto;
   top: 50%;
   left: 50%;
+}
+
+h1.title a {
+  text-decoration: none;
+}
+a {
+  color: #776e65;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* h1.title {
+  font-size: 60px;
+  line-height: 66px;
+} */
+h1.title {
+  font-size: 31px;
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  float: left;
+}
+
+h1 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+div {
+  display: block;
+}
+.heading:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.scores-container {
+  float: right;
+  text-align: right;
+  height: 30%;
+  /* padding: 10px 20px; */
+}
+
+.container {
+  width: 500px;
+  margin: 25px auto 25px;
+}
+
+h1 span {
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  -webkit-animation: bounce 0.2s ease infinite alternate;
+  font-size: 67px;
+
+  color: #8f7a66;
+  text-shadow: 0 1px 0 rgb(168, 167, 167), 0 2px 0 rgb(168, 167, 167),
+    0 3px 0 rgb(168, 167, 167), 0 4px 0 rgb(168, 167, 167),
+    0 5px 0 rgb(168, 167, 167), 0 6px 0 transparent, 0 7px 0 transparent,
+    0 8px 0 transparent, 0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+h1 span:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+}
+
+h1 span:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+}
+
+h1 span:nth-child(4) {
+  -webkit-animation-delay: 0.3s;
+}
+
+/* ANIMATION */
+@-webkit-keyframes bounce {
+  100% {
+    top: -23px;
+    text-shadow: 0 1px 0 rgb(168, 167, 167), 0 2px 0 rgb(168, 167, 167),
+      0 3px 0 rgb(168, 167, 167), 0 4px 0 rgb(168, 167, 167),
+      0 5px 0 rgb(168, 167, 167), 0 6px 0 rgb(168, 167, 167),
+      0 7px 0 rgb(168, 167, 167), 0 8px 0 rgb(168, 167, 167),
+      0 9px 0 rgb(168, 167, 167), 0 50px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.heading {
+  height: 90px;
 }
