@@ -154,8 +154,8 @@ function moveRight() {
 function checkWinning() {
   for (let row = 0; row <= 3; row++) {
     for (let col = 0; col <= 3; col++) {
-      // if (board[row][col] === 2048) {
-      if (board[row][col] === 8) {
+      if (board[row][col] === 2048) {
+        // if (board[row][col] === 8) {
         // for testing
         overLayShow(1);
         return false;

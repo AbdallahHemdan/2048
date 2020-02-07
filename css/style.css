@@ -226,7 +226,7 @@ h1 span {
   position: relative;
   top: 10px;
   display: inline-block;
-  -webkit-animation: bounce 0.2s ease infinite alternate;
+  -webkit-animation: bounce 0.3s ease infinite alternate;
   font-size: 67px;
 
   color: #8f7a66;
