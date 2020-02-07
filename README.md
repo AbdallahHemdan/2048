@@ -40,5 +40,9 @@ __If two tiles of the same number collide while moving, they will merge into a t
 <hr>
 <img src="https://github.com/AbdallahHemdan/HamDola2048Game/blob/master/screenshot/5.png">
 <hr>
+<img src="https://github.com/AbdallahHemdan/HamDola2048Game/blob/master/screenshot/6.png">
+<hr>
+<img src="https://github.com/AbdallahHemdan/HamDola2048Game/blob/master/screenshot/7.png">
+<hr>
 
 </div>
