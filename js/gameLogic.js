@@ -154,8 +154,9 @@ function moveRight() {
 function checkWinning() {
   for (let row = 0; row <= 3; row++) {
     for (let col = 0; col <= 3; col++) {
-      if (board[row][col] === 2048) {
-        //   if (board[row][col] === 8) { // for testing
+      // if (board[row][col] === 2048) {
+      if (board[row][col] === 8) {
+        // for testing
         overLayShow(1);
         return false;
       }
@@ -163,15 +164,15 @@ function checkWinning() {
   }
 }
 function checkGameOver() {
-  // for testing
-  //   for (let row = 0; row <= 3; row++) {
-  //     for (let col = 0; col <= 3; col++) {
-  //       if (board[row][col] === 4) {
-  //         overLayShow(2);
-  //         return false;
-  //       }
+  // // for testing
+  // for (let row = 0; row <= 3; row++) {
+  //   for (let col = 0; col <= 3; col++) {
+  //     if (board[row][col] === 4) {
+  //       overLayShow(2);
+  //       return false;
   //     }
   //   }
+  // }
   if (
     !canMoveUp(board) &&
     !canMoveLeft(board) &&
@@ -199,9 +200,17 @@ function endWinningOverLay() {
 }
 function startGameOverOverLay() {
   document.getElementById("overlay-1").style.display = "block";
+  let gameScore = document.getElementById("text-1");
+  gameEnd.innerHTML += ` ${score}`;
 }
 function endGameOverOverLay() {
   document.getElementById("overlay-1").style.display = "none";
+}
+function startIntroOverLay() {
+  document.getElementById("overlay-3").style.display = "block";
+}
+function endIntroOverLay() {
+  document.getElementById("overlay-3").style.display = "none";
 }
 
 function rePlay(stateFlag) {
@@ -222,4 +231,8 @@ function continueWithOldBoard(stateFlag) {
   } else {
     endGameOverOverLay();
   }
+}
+function startGame() {
+  startIntroOverLay();
+  newGame();
 }
