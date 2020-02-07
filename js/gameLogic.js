@@ -211,6 +211,7 @@ function startIntroOverLay() {
 }
 function endIntroOverLay() {
   document.getElementById("overlay-3").style.display = "none";
+  newGame();
 }
 
 function rePlay(stateFlag) {
@@ -234,5 +235,5 @@ function continueWithOldBoard(stateFlag) {
 }
 function startGame() {
   startIntroOverLay();
-  newGame();
+  // newGame();
 }
