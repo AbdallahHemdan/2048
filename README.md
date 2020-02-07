@@ -42,20 +42,3 @@ __If two tiles of the same number collide while moving, they will merge into a t
 <hr>
 
 </div>
-
-## 🕶 Demo
-----------
-
-<div align="center">
-  
-<img width="1000px" src="https://github.com/AbdallahHemdan/Pathfinding-Visualizer/blob/master/VideoDemo/Visualizer-out-slow.gif">
-
-</div>
-
-### ✨ Contributors (HamDola Members 🚀)
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/AbdallahHemdan"><img src="https://avatars1.githubusercontent.com/u/40190772?s=460&v=4" width="150px;" alt=""/><br /><sub><b>Abdallah Hemdan</b></sub></a><br /></td>
-     <td align="center"><a href="https://github.com/AdelRizq"><img src="https://avatars2.githubusercontent.com/u/40351413?s=460&v=4" width="150px;" alt=""/><br /><sub><b>Adel Mohamed</b></sub></a><br /></td>
-  </tr>
- </table>
